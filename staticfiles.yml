@@ -1,0 +1,4 @@
+version: 1.0
+commands:
+  - name: collectstatic
+    command: python manage.py collectstatic --noinput
