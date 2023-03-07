@@ -16,18 +16,18 @@
     <section class="section-background">
         <div class="container">
             <div class="row">
-                {% for car in cars %}
+                {% for offer in offers %}
                     <div class="col-md-4 col-sm-4">
                         <div class="courses-thumb courses-thumb-secondary">
                             <div class="courses-top">
                                 <div class="courses-image">
-                                    <img src="{{ car.image_url }}" class="img-responsive" alt="">
+                                    <img src="{{ offer.image_url }}" class="img-responsive" alt="">
                                 </div>
                             </div>
 
                             <div class="courses-detail">
-                                <h3><a href="{% url 'fleet' %}">{{ car.name }}</a></h3>
-                                <p class="lead"><small>from</small> <strong><s>N</s>{{ car.price|floatformat|intcomma }}
+                                <h3><a href="{% url 'fleet' %}">{{ offer.name }}</a></h3>
+                                <p class="lead"><small>from</small> <strong><s>N</s>{{ offer.price|floatformat|intcomma }}
                                 </strong> <small>per
                                     weekend</small>
                                 </p>

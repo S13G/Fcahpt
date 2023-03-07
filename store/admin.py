@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from store.models import Newsletter, Car, Contact, Setting, Booking
+from store.models import Newsletter, Car, Contact, Setting, Booking, Offer
 
 
 # Register your models here.
@@ -45,7 +45,15 @@ class SettingsAdmin(admin.ModelAdmin):
 
 @admin.register(Booking)
 class BookingAdmin(admin.ModelAdmin):
-    list_display = ['full_name', 'email_address', 'pickup_location', 'return_location']
-    list_filter = ['full_name', 'email_address']
+    list_display = ['full_name', 'car', 'email_address', 'pickup_location', 'return_location']
+    list_filter = ['full_name', 'email_address', 'car']
     list_per_page = 10
-    search_fields = ['full_name', 'email_address']
+    search_fields = ['full_name', 'email_address', 'car']
+
+
+@admin.register(Offer)
+class OfferAdmin(admin.ModelAdmin):
+    list_display = ['name', 'price']
+    list_filter = ['name', 'price']
+    list_per_page = 10
+    search_fields = ['name']

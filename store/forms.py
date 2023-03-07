@@ -28,16 +28,23 @@ class ContactForm(forms.ModelForm):
 
 
 class BookingForm(forms.ModelForm):
+    pickup_date_and_time = forms.DateTimeField(widget=forms.DateTimeInput(attrs={'type': 'datetime-local'}),
+                                               label="Pick-up date/time")
+    return_date_and_time = forms.DateTimeField(widget=forms.DateTimeInput(attrs={'type': 'datetime-local'}),
+                                               label="Return date/time")
+
     class Meta:
         model = Booking
         fields = "__all__"
-        widgets = {
-            "pickup_date_and_time": forms.DateTimeInput(attrs={"name": "pickup_date_and_time"}),
-            "return_date_and_time": forms.DateTimeInput(attrs={"name": "return_date_and_time"}),
-        }
 
     def __init__(self, *args, **kwargs):
         super(BookingForm, self).__init__(*args, **kwargs)
 
-        for name, field in self.fields.items():
-            field.widget.attrs.update({'class': 'form-control', 'placeholder': field.label})
+        self.fields['pickup_location'].widget.attrs.update({'class': 'form-control', 'placeholder': 'Pickup Location'})
+        self.fields['return_location'].widget.attrs.update({'class': 'form-control', 'placeholder': 'Return Location'})
+        self.fields['full_name'].widget.attrs.update({'class': 'form-control', 'placeholder': 'Full Name'})
+        self.fields['email_address'].widget.attrs.update({'class': 'form-control', 'placeholder': 'Email Address'})
+        self.fields['phone_number'].widget.attrs.update({'class': 'form-control', 'placeholder': 'Phone Number'})
+        self.fields['pickup_date_and_time'].widget.attrs.update({'class': 'form-control'})
+        self.fields['return_date_and_time'].widget.attrs.update({'class': 'form-control'})
+

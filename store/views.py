@@ -3,8 +3,9 @@ import random
 from django.contrib import messages
 from django.shortcuts import render, redirect
 
+from common.email import Util
 from store.forms import NewsletterForm, ContactForm, BookingForm
-from store.models import Car, Setting
+from store.models import Car, Setting, Offer
 
 
 # Create your views here.
@@ -19,19 +20,24 @@ def booking(request):
     if request.method == "POST":
         booking_form = BookingForm(request.POST)
         if booking_form.is_valid():
-            booking_form.save()
-            print(booking_form.errors)
-            print(booking_form)
+            car_id = request.POST.get("car_id")
+            try:
+                car_instance = Car.objects.get(id=car_id)
+            except Car.DoesNotExist:
+                messages.info(request, "Error while booking: car not found")
+                return redirect('fleet')
+
+            booking = booking_form.save(commit=False)
+            booking.car = car_instance
+            booking.save()
+
             messages.success(request, "You have successfully booked a car")
+            Util.send_booking_receipt(booking)
+
             return redirect('homepage')
         else:
-            print(booking_form.errors)
             messages.info(request, "Error while booking")
-    else:
-        booking_form = BookingForm()
-    cars = Car.objects.all()
-    context = {"newsletter_form": NewsletterForm(), "cars": cars, "booking_form": booking_form}
-    return render(request, 'store/fleet.html', context)
+    return redirect('fleet')
 
 
 def contact(request):
@@ -59,6 +65,12 @@ def contact_form_submit(request):
     return redirect('homepage')
 
 
+def fleet(request):
+    cars = Car.objects.all()
+    context = {"newsletter_form": NewsletterForm(), "cars": cars, "booking_form": BookingForm()}
+    return render(request, 'store/fleet.html', context)
+
+
 def newsletter_form_submit(request):
     if request.method == "POST":
         newsletter_form = NewsletterForm(request.POST)
@@ -70,13 +82,7 @@ def newsletter_form_submit(request):
     return redirect('homepage')
 
 
-def fleet(request):
-    cars = Car.objects.all()
-    context = {"newsletter_form": NewsletterForm(), "cars": cars, "booking_form": BookingForm()}
-    return render(request, 'store/fleet.html', context)
-
-
 def offers(request):
-    cars = Car.objects.all()
-    context = {"newsletter_form": NewsletterForm(), "cars": cars}
+    offers = Offer.objects.all()
+    context = {"newsletter_form": NewsletterForm(), "offers": offers}
     return render(request, 'store/offers.html', context)

@@ -18,7 +18,6 @@ TRANSMISSION_CHOICES = (
 class Car(BaseModel):
     name = models.CharField(max_length=255, null=True)
     image = ProcessedImageField(processors=[ResizeToFill(720, 480)], format='JPEG', options={'quality': 60}, null=True)
-    description = models.TextField()
     price = models.DecimalField(max_digits=10, decimal_places=2, validators=[MinValueValidator(1)])
     passengers = models.IntegerField(validators=[MinValueValidator(1)])
     luggage = models.IntegerField(validators=[MinValueValidator(1)])
@@ -76,6 +75,7 @@ class Setting(BaseModel):
 
 
 class Booking(BaseModel):
+    car = models.ForeignKey(Car, on_delete=models.CASCADE, related_name="booking", null=True)
     pickup_location = models.CharField(max_length=300)
     pickup_date_and_time = models.DateTimeField()
     return_location = models.CharField(max_length=300)
@@ -89,3 +89,23 @@ class Booking(BaseModel):
 
     def __str__(self):
         return f"{self.full_name} = {self.pickup_location} to {self.return_location}"
+
+
+class Offer(BaseModel):
+    name = models.CharField(max_length=255, null=True)
+    image = ProcessedImageField(processors=[ResizeToFill(720, 480)], format='JPEG', options={'quality': 60}, null=True)
+    price = models.DecimalField(max_digits=10, decimal_places=2, validators=[MinValueValidator(1)])
+
+    class Meta:
+        ordering = ["-created"]
+
+    def __str__(self):
+        return self.name
+
+    @property
+    def image_url(self):
+        try:
+            url = self.image.url
+        except:
+            url = None
+        return url
