@@ -7,7 +7,7 @@ from common.threads import EmailThread
 class Util:
     @staticmethod
     def send_booking_receipt(booking):
-        subject = "Verify Your Email Address"
+        subject = "Booking Successful"
         car = booking.car  # get booked car instance
         message = render_to_string(
             "store/receipt.html",

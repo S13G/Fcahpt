@@ -45,10 +45,5 @@ class BookingForm(forms.ModelForm):
         if car:
             self.fields['car'].initial = car.id
 
-        self.fields['pickup_location'].widget.attrs.update({'class': 'form-control', 'placeholder': 'Pickup Location'})
-        self.fields['return_location'].widget.attrs.update({'class': 'form-control', 'placeholder': 'Return Location'})
-        self.fields['full_name'].widget.attrs.update({'class': 'form-control', 'placeholder': 'Full Name'})
-        self.fields['email_address'].widget.attrs.update({'class': 'form-control', 'placeholder': 'Email Address'})
-        self.fields['phone_number'].widget.attrs.update({'class': 'form-control', 'placeholder': 'Phone Number'})
-        self.fields['pickup_date_and_time'].widget.attrs.update({'class': 'form-control'})
-        self.fields['return_date_and_time'].widget.attrs.update({'class': 'form-control'})
+        for name, field in self.fields.items():
+            field.widget.attrs.update({'class': 'form-control', 'placeholder': field.label})

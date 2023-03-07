@@ -3,6 +3,7 @@ import random
 from django.contrib import messages
 from django.shortcuts import render, redirect, get_object_or_404
 
+from common.email import Util
 from store.forms import NewsletterForm, ContactForm, BookingForm
 from store.models import Car, Setting, Offer
 
@@ -26,6 +27,8 @@ def booking(request, car_id):
             booking.car = car
             booking.save()
             messages.success(request, "Your booking was successful")
+
+            Util.send_booking_receipt(booking)
             return redirect('homepage')
         else:
             messages.error(request, "Error with booking, try again")

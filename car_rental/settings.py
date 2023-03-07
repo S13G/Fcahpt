@@ -242,6 +242,7 @@ JAZZMIN_SETTINGS = {
         "store.contact": "fas fa-address-book",
         "store.setting": "fas fa-wrench",
         "store.booking": "fas fa-book",
+        "store.offer": "fab fa-buffer",
     },
     # Icons that are used when one is not manually specified
     "default_icon_parents": "fas fa-chevron-circle-right",
