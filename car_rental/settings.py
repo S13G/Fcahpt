@@ -37,6 +37,7 @@ DJANGO_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
+    'django.contrib.humanize',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
@@ -224,7 +225,7 @@ JAZZMIN_SETTINGS = {
         "store.newsletter": "fas fa-envelope",
         "store.contact": "fas fa-address-book",
         "store.setting": "fas fa-wrench",
-
+        "store.booking": "fas fa-book",
     },
     # Icons that are used when one is not manually specified
     "default_icon_parents": "fas fa-chevron-circle-right",

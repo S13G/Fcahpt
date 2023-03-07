@@ -1,6 +1,6 @@
 from django import forms
 
-from store.models import Newsletter, Contact
+from store.models import Newsletter, Contact, Booking
 
 
 class NewsletterForm(forms.ModelForm):
@@ -11,8 +11,8 @@ class NewsletterForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(NewsletterForm, self).__init__(*args, **kwargs)
 
-        self.fields['email'].widget.attrs.update(
-            {'class': 'form-control bg-dark border-light', 'placeholder': 'Email Address', 'id': 'subscribeEmail'})
+        for name, field in self.fields.items():
+            field.widget.attrs.update({'class': 'form-control', 'placeholder': field.label})
 
 
 class ContactForm(forms.ModelForm):
@@ -24,4 +24,20 @@ class ContactForm(forms.ModelForm):
         super(ContactForm, self).__init__(*args, **kwargs)
 
         for name, field in self.fields.items():
-            field.widget.attrs.update({'class': 'form-control mt-2 input'})
+            field.widget.attrs.update({'class': 'form-control', 'placeholder': field.label})
+
+
+class BookingForm(forms.ModelForm):
+    class Meta:
+        model = Booking
+        fields = "__all__"
+        widgets = {
+            "pickup_date_and_time": forms.DateTimeInput(attrs={"name": "pickup_date_and_time"}),
+            "return_date_and_time": forms.DateTimeInput(attrs={"name": "return_date_and_time"}),
+        }
+
+    def __init__(self, *args, **kwargs):
+        super(BookingForm, self).__init__(*args, **kwargs)
+
+        for name, field in self.fields.items():
+            field.widget.attrs.update({'class': 'form-control', 'placeholder': field.label})

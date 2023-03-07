@@ -1,10 +1,11 @@
+{% load humanize %}
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
 
-    <title> FCAHPT Car Fleet </title>
+    <title> {{ settings.website_name }} </title>
 
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
@@ -23,44 +24,43 @@
 
 <body id="top" data-spy="scroll" data-target=".navbar-collapse" data-offset="50">
 
+<!-- PRE LOADER -->
+<section class="preloader">
+    <div class="spinner">
+        <span class="spinner-rotate"></span>
+    </div>
+</section>
+
+
+<!-- MENU -->
+<section class="navbar custom-navbar navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <div class="navbar-header">
+            <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon icon-bar"></span>
+                <span class="icon icon-bar"></span>
+                <span class="icon icon-bar"></span>
+            </button>
+
+            <!-- lOGO TEXT HERE -->
+            <a href="#" class="navbar-brand">FCAHPT Car Fleet</a>
+        </div>
+
+        <!-- MENU LINKS -->
+        <div class="collapse navbar-collapse">
+            <ul class="nav navbar-nav navbar-nav-first">
+                <li class="active"><a href="{% url 'homepage' %}">Home</a></li>
+                <li><a href="{% url 'fleet' %}">Fleet</a></li>
+                <li><a href="{% url 'offers' %}">Offers</a></li>
+                <li><a href="{% url 'about' %}">About Us</a></li>
+                <li><a href="{% url 'contact' %}">Contact Us</a></li>
+            </ul>
+        </div>
+
+    </div>
+</section>
 {% block content %}
-    <!-- PRE LOADER -->
-    <section class="preloader">
-        <div class="spinner">
-            <span class="spinner-rotate"></span>
-        </div>
-    </section>
-
-
-    <!-- MENU -->
-    <section class="navbar custom-navbar navbar-fixed-top" role="navigation">
-        <div class="container">
-
-            <div class="navbar-header">
-                <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon icon-bar"></span>
-                    <span class="icon icon-bar"></span>
-                    <span class="icon icon-bar"></span>
-                </button>
-
-                <!-- lOGO TEXT HERE -->
-                <a href="#" class="navbar-brand">FCAHPT Car Fleet</a>
-            </div>
-
-            <!-- MENU LINKS -->
-            <div class="collapse navbar-collapse">
-                <ul class="nav navbar-nav navbar-nav-first">
-                    <li class="active"><a href="index.html">Home</a></li>
-                    <li><a href="{% url 'fleet' %}">Fleet</a></li>
-                    <li><a href="{% url 'offers' %}">Offers</a></li>
-                    <li><a href="{% url 'testimonials' %}">Testimonials</a></li>
-                    <li><a href="{% url 'about' %}">About Us</a></li>
-                    <li><a href="{% url 'contact' %}">Contact Us</a></li>
-                </ul>
-            </div>
-
-        </div>
-    </section>
 
     <!-- HOME -->
     <section id="home">
@@ -72,7 +72,8 @@
                             <div class="col-md-6 col-sm-12">
                                 <h1>Your #1 Car Renting Website</h1>
                                 <h3>We are the best car renting website all over the country</h3>
-                                <a href="{% url 'fleet' %}" class="section-btn btn btn-default">See our fleet</a>
+                                <a href="../store/templates/store/fleet.html" class="section-btn btn btn-default">See
+                                    our fleet</a>
                             </div>
                         </div>
                     </div>
@@ -116,12 +117,13 @@
 
                             <br>
 
-                            <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore
-                                molestias ipsa veritatis nihil iusto maiores natus dolor, a reiciendis corporis
-                                obcaecati ex. Totam assumenda impedit aut eum, illum distinctio saepe explicabo.
-                                Consequuntur molestiae similique id quos, quasi quas perferendis laboriosam,
-                                fugit natus odit totam! Id dolores saepe, sint debitis rerum dolorem tempora
-                                aliquid, pariatur enim nisi. Quia ab iusto assumenda.</p>
+                            <p class="lead">We are a leading car rental company dedicated to providing our customers
+                                with the highest level
+                                of service and quality vehicles at affordable prices. With years of experience in the
+                                car
+                                rental industry, we have developed a reputation for delivering exceptional customer
+                                service and
+                                building long-lasting relationships with our clients.</p>
                         </div>
                     </div>
                 </div>
@@ -133,75 +135,33 @@
                 <div class="row">
                     <div class="col-md-12 col-sm-12">
                         <div class="section-title text-center">
-                            <h2>Offers <small>Lorem ipsum dolor sit amet.</small></h2>
+                            <h2>Offers <small>Cars We Offer.</small></h2>
                         </div>
                     </div>
+                    {% for car in cars %}
+                        <div class="col-md-4 col-sm-6">
+                            <div class="team-thumb">
+                                <div class="team-image">
+                                    <img src="{{ car.image_url }}" class="img-responsive" alt="">
+                                </div>
+                                <div class="team-info">
+                                    <h3>{{ car.name }}</h3>
 
-                    <div class="col-md-4 col-sm-6">
-                        <div class="team-thumb">
-                            <div class="team-image">
-                                <img src="images/offer-1-720x480.jpg" class="img-responsive" alt="">
-                            </div>
-                            <div class="team-info">
-                                <h3>FAMILY CARS</h3>
-
-                                <p class="lead"><small>from</small> <strong>$120</strong> <small>per
-                                    weekend</small></p>
-
-                                <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum dicta
-                                             voluptas quia dolor fuga odit.</span>
-                            </div>
-                            <div class="team-thumb-actions">
-                                <a href="offers.html" class="section-btn btn btn-primary btn-block">View
-                                    Offer</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-4 col-sm-6">
-                        <div class="team-thumb">
-                            <div class="team-image">
-                                <img src="images/offer-2-720x480.jpg" class="img-responsive" alt="">
-                            </div>
-                            <div class="team-info">
-                                <h3>LUXURY & PRESTIGE CARS</h3>
-
-                                <p class="lead"><small>from</small> <strong>$99</strong> <small>per
-                                    weekend</small></p>
-
-                                <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Non beatae
-                                             soluta, placeat vitae cum maxime culpa itaque minima.</span>
-                            </div>
-                            <div class="team-thumb-actions">
-                                <a href="offers.html" class="section-btn btn btn-primary btn-block">View
-                                    Offer</a>
+                                    <p class="lead"><small>from</small>
+                                        <strong><s>N</s>{{ car.price|floatformat|intcomma }}</strong> <small>per
+                                            weekend</small></p>
+                                </div>
+                                <div class="team-thumb-actions">
+                                    <a href="{% url 'offers' %}" class="section-btn btn btn-primary btn-block">View
+                                        Offer</a>
+                                </div>
                             </div>
                         </div>
-                    </div>
-
-                    <div class="col-md-4 col-sm-6">
-                        <div class="team-thumb">
-                            <div class="team-image">
-                                <img src="images/offer-3-720x480.jpg" class="img-responsive" alt="">
-                            </div>
-                            <div class="team-info">
-                                <h3>TOP SELLERS</h3>
-
-                                <p class="lead"><small>from</small> <strong>$110</strong> <small>per
-                                    weekend</small></p>
-
-                                <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nesciunt nisi
-                                             quia aspernatur, harum facere delectus saepe enim?</span>
-                            </div>
-                            <div class="team-thumb-actions">
-                                <a href="offers.html" class="section-btn btn btn-primary btn-block">View
-                                    Offer</a>
-                            </div>
-                        </div>
-                    </div>
+                    {% endfor %}
                 </div>
             </div>
         </section>
+
         <section id="testimonial">
             <div class="container">
                 <div class="row">
@@ -215,16 +175,18 @@
                             <div class="col-md-4 col-sm-4">
                                 <div class="item">
                                     <div class="tst-image">
-                                        <img src="images/tst-image-1-200x216.jpg" class="img-responsive"
+                                        <img src="{% static 'images/tst-image-1-200x216.jpg' %}" class="img-responsive"
                                              alt="">
                                     </div>
                                     <div class="tst-author">
                                         <h4>Jackson</h4>
                                         <span>Shopify Developer</span>
                                     </div>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ullam
-                                        voluptas, facilis adipisci dolorem exercitationem nemo aut error
-                                        impedit repudiandae iusto.</p>
+                                    <p>"I was blown away by the selection of cars available on this website. From
+                                        budget-friendly options to luxury vehicles, there was something for everyone.
+                                        The booking process was seamless, and I had my car reserved in just a few
+                                        minutes. Will definitely be using this website for all my future car
+                                        rentals!"</p>
                                     <div class="tst-rating">
                                         <i class="fa fa-star"></i>
                                         <i class="fa fa-star"></i>
@@ -238,16 +200,17 @@
                             <div class="col-md-4 col-sm-4">
                                 <div class="item">
                                     <div class="tst-image">
-                                        <img src="images/tst-image-2-200x216.jpg" class="img-responsive"
+                                        <img src="{% static 'images/tst-image-2-200x216.jpg' %}" class="img-responsive"
                                              alt="">
                                     </div>
                                     <div class="tst-author">
                                         <h4>Camila</h4>
                                         <span>Marketing Manager</span>
                                     </div>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente
-                                        error, unde eos laborum consequatur officiis perferendis vel debitis,
-                                        dolore, ipsum quibusdam culpa quisquam, reiciendis aspernatur.</p>
+                                    <p>"I had to make a last-minute trip out of town, and this website saved the day. I
+                                        was able to find a car rental at an affordable price, and the customer service
+                                        team was incredibly helpful when I had questions about my reservation. The car
+                                        was in great condition, and I had a smooth and comfortable ride."</p>
                                     <div class="tst-rating">
                                         <i class="fa fa-star"></i>
                                         <i class="fa fa-star"></i>
@@ -259,16 +222,18 @@
                             <div class="col-md-4 col-sm-4">
                                 <div class="item">
                                     <div class="tst-image">
-                                        <img src="images/tst-image-3-200x216.jpg" class="img-responsive"
+                                        <img src="{% static 'images/tst-image-3-200x216.jpg' %}" class="img-responsive"
                                              alt="">
                                     </div>
                                     <div class="tst-author">
                                         <h4>Barbie</h4>
                                         <span>Art Director</span>
                                     </div>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sit laborum
-                                        minima autem, reprehenderit mollitia amet id, beatae quo sequi culpa
-                                        assumenda neque a quisquam, magni.</p>
+                                    <p>"I'm a frequent traveler, and this is by far the best car rental website I've
+                                        used. The prices are competitive, and the website is easy to navigate. I
+                                        appreciate the ability to filter results based on my preferences, and the
+                                        reviews from other users are helpful in making my decision. Highly
+                                        recommend!"</p>
                                     <div class="tst-rating">
                                         <i class="fa fa-star"></i>
                                         <i class="fa fa-star"></i>
@@ -281,16 +246,18 @@
                             <div class="col-md-4 col-sm-4">
                                 <div class="item">
                                     <div class="tst-image">
-                                        <img src="images/tst-image-4-200x216.jpg" class="img-responsive"
+                                        <img src="{% static 'images/tst-image-4-200x216.jpg' %}" class="img-responsive"
                                              alt="">
                                     </div>
                                     <div class="tst-author">
                                         <h4>Andrio</h4>
                                         <span>Web Developer</span>
                                     </div>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore natus
-                                        culpa laudantium sit dolores quidem at nulla, iure atque laborum! Odit
-                                        tempora, enim aliquid at modi illum ducimus explicabo soluta.</p>
+                                    <p>"I was hesitant to use a car rental website for fear of hidden fees and
+                                        unexpected charges, but this website was completely transparent. The final price
+                                        I paid was exactly what I was quoted, and there were no surprises at the rental
+                                        counter. The car was clean and well-maintained, and I had a great experience
+                                        overall."</p>
                                     <div class="tst-rating">
                                         <i class="fa fa-star"></i>
                                         <i class="fa fa-star"></i>
@@ -313,24 +280,19 @@
             <div class="row">
 
                 <div class="col-md-6 col-sm-12">
-                    <form id="contact-form" role="form" action="" method="post">
+                    <form id="contact-form" role="form" action="/contact-form/" method="post">
+                        {% csrf_token %}
                         <div class="section-title">
                             <h2>Contact us <small>we love conversations. let us talk!</small></h2>
                         </div>
-
-                        <div class="col-md-12 col-sm-12">
-                            <input type="text" class="form-control" placeholder="Enter full name" name="name"
-                                   required>
-
-                            <input type="email" class="form-control" placeholder="Enter email address"
-                                   name="email" required>
-
-                            <textarea class="form-control" rows="6" placeholder="Tell us about your message"
-                                      name="message" required></textarea>
-                        </div>
+                        {% for form in contact_form %}
+                            <div class="col-md-12 col-sm-12">
+                                {{ form }}
+                            </div>
+                        {% endfor %}
 
                         <div class="col-md-4 col-sm-12">
-                            <input type="submit" class="form-control" name="send message" value="Send Message">
+                            <input type="submit" class="form-control" name="send-message" value="Send Message">
                         </div>
 
                     </form>
@@ -338,14 +300,14 @@
 
                 <div class="col-md-6 col-sm-12">
                     <div class="contact-image">
-                        <img src="images/contact-1-600x400.jpg" class="img-responsive" alt="Smiling Two Girls">
+                        <img src="{% static 'images/contact-1-600x400.jpg' %}" class="img-responsive"
+                             alt="Smiling Two Girls">
                     </div>
                 </div>
 
             </div>
         </div>
     </section>
-
 {% endblock content %}
 
 <!-- FOOTER -->
@@ -359,17 +321,25 @@
                         <h2>Headquarter</h2>
                     </div>
                     <address>
-                        <p>212 Barrington Court <br>New York, ABC 10001</p>
+                        <p>{{ settings.address|linebreaksbr }}
+                        </p>
                     </address>
 
                     <ul class="social-icon">
-                        <li><a href="#" class="fa fa-facebook-square" attr="facebook icon"></a></li>
-                        <li><a href="#" class="fa fa-twitter"></a></li>
-                        <li><a href="#" class="fa fa-instagram"></a></li>
+                        {% if settings.facebook %}
+                            <li><a href="#" class="fa fa-facebook-square"
+                                   attr="facebook icon">{{ settings.facebook }}</a></li>
+                        {% endif %}
+                        {% if settings.twitter %}
+                            <li><a href="#" class="fa fa-twitter">{{ settings.twitter }}</a></li>
+                        {% endif %}
+                        {% if settings.instagram %}
+                            <li><a href="#" class="fa fa-instagram">{{ settings.instagram }}</a></li>
+                        {% endif %}
                     </ul>
 
                     <div class="copyright-text">
-                        <p>Copyright &copy; 2023 FCAHPT Car Fleet</p>
+                        <p>Copyright &copy; 2023 {{ settings.website_name }}</p>
                     </div>
                 </div>
             </div>
@@ -380,17 +350,17 @@
                         <h2>Contact Info</h2>
                     </div>
                     <address>
-                        <p>+1 333 4040 5566</p>
-                        <p><a href="mailto:contact@company.com">contact@company.com</a></p>
+                        <p>{{ settings.phone_number }}</p>
+                        <p><a href="mailto:contact@company.com">{{ settings.company_email }}</a></p>
                     </address>
 
                     <div class="footer_menu">
                         <h2>Quick Links</h2>
                         <ul>
-                            <li><a href="index.html">Home</a></li>
-                            <li><a href="about-us.html">About Us</a></li>
+                            <li><a href="{% url 'homepage' %}">Home</a></li>
+                            <li><a href="{% url 'about' %}">About Us</a></li>
 
-                            <li><a href="contact.html">Contact Us</a></li>
+                            <li><a href="{% url 'contact' %}">Contact Us</a></li>
                         </ul>
                     </div>
                 </div>
@@ -403,10 +373,12 @@
                     </div>
                     <div>
                         <div class="form-group">
-                            <form action="#" method="get">
-                                <input type="email" class="form-control" placeholder="Enter your email"
-                                       name="email" id="email" required>
-                                <input type="submit" class="form-control" name="submit" id="form-submit"
+                            <form action="/newsletter/" method="post">
+                                {% csrf_token %}
+                                {% for form in newsletter_form %}
+                                    {{ form }}
+                                {% endfor %}
+                                <input type="submit" class="form-control" name="news-submit" id="form-submit"
                                        value="Send me">
                             </form>
                             <span><sup>*</sup> Please note - we do not spam your email.</span>
@@ -414,7 +386,6 @@
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
 </footer>

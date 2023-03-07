@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from store.models import Newsletter, Car, Contact, Setting
+from store.models import Newsletter, Car, Contact, Setting, Booking
 
 
 # Register your models here.
@@ -41,3 +41,11 @@ class SettingsAdmin(admin.ModelAdmin):
         if 'delete_selected' in actions:
             del actions['delete_selected']
         return actions
+
+
+@admin.register(Booking)
+class BookingAdmin(admin.ModelAdmin):
+    list_display = ['full_name', 'email_address', 'pickup_location', 'return_location']
+    list_filter = ['full_name', 'email_address']
+    list_per_page = 10
+    search_fields = ['full_name', 'email_address']

@@ -4,6 +4,7 @@ from imagekit.models import ProcessedImageField
 from imagekit.processors import ResizeToFill
 
 from common.models import BaseModel
+from store.validators import validate_phone_number
 
 # Create your models here.
 
@@ -23,6 +24,9 @@ class Car(BaseModel):
     luggage = models.IntegerField(validators=[MinValueValidator(1)])
     doors = models.IntegerField(validators=[MinValueValidator(1)])
     transmission = models.CharField(max_length=1, choices=TRANSMISSION_CHOICES, default=None)
+
+    class Meta:
+        ordering = ["-created"]
 
     def __str__(self):
         return self.name
@@ -61,7 +65,7 @@ class Contact(BaseModel):
 class Setting(BaseModel):
     website_name = models.CharField(max_length=100)
     address = models.CharField(max_length=300)
-    phone_number = models.CharField(max_length=100)
+    phone_number = models.CharField(max_length=100, validators=[validate_phone_number])
     company_email = models.EmailField()
     facebook = models.URLField(blank=True, null=True)
     twitter = models.URLField(blank=True, null=True)
@@ -69,3 +73,19 @@ class Setting(BaseModel):
 
     def __str__(self):
         return self.website_name
+
+
+class Booking(BaseModel):
+    pickup_location = models.CharField(max_length=300)
+    pickup_date_and_time = models.DateTimeField()
+    return_location = models.CharField(max_length=300)
+    return_date_and_time = models.DateTimeField()
+    full_name = models.CharField(max_length=255)
+    email_address = models.EmailField()
+    phone_number = models.CharField(max_length=100, validators=[validate_phone_number])
+
+    class Meta:
+        ordering = ["-created"]
+
+    def __str__(self):
+        return f"{self.full_name} = {self.pickup_location} to {self.return_location}"
