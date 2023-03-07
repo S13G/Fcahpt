@@ -42,9 +42,11 @@
                             </div>
 
                             <div class="courses-info">
-                                <button type="button" data-toggle="modal" data-target=".bs-example-modal"
-                                        class="section-btn btn btn-primary btn-block">Book Now
-                                </button>
+                                <a href="{% url 'booking' car.id %}">
+                                    <button type="button" data-toggle="modal" data-target=".bs-example-modal"
+                                            class="section-btn btn btn-primary btn-block">Book Now
+                                    </button>
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -53,60 +55,5 @@
             </div>
         </div>
     </section>
-
-    <div class="modal fade bs-example-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                            aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="gridSystemModalLabel">Book Now</h4>
-                </div>
-
-                <div class="modal-body">
-                    <form action="{% url 'booking' %}" id="contact-form" method="post">
-                        {% csrf_token %}
-                        <div class="row">
-                            <div class="col-md-6">
-                                {{ booking_form.pickup_location }}
-                            </div>
-
-                            <div class="col-md-6">
-                                {{ booking_form.return_location }}
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-md-6">
-                                {{ booking_form.pickup_date_and_time }}
-                            </div>
-
-                            <div class="col-md-6">
-                                {{ booking_form.return_date_and_time }}
-                            </div>
-                        </div>
-                        {{ booking_form.full_name }}
-
-                        <div class="row">
-                            <div class="col-md-6">
-                                {{ booking_form.email_address }}
-                            </div>
-
-                            <div class="col-md-6">
-                                {{ booking_form.phone_number }}
-                            </div>
-                        </div>
-
-                        <div class="modal-footer">
-                            <button type="submit" class="section-btn btn btn-primary">Book Now</button>
-                        </div>
-                    </form>
-
-                </div>
-
-
-            </div>
-        </div>
-    </div>
 
 {% endblock content %}

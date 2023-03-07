@@ -1,9 +1,8 @@
 import random
 
 from django.contrib import messages
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 
-from common.email import Util
 from store.forms import NewsletterForm, ContactForm, BookingForm
 from store.models import Car, Setting, Offer
 
@@ -16,42 +15,38 @@ def about(request):
     return render(request, 'store/about-us.html', context)
 
 
-def booking(request):
-    if request.method == "POST":
-        booking_form = BookingForm(request.POST)
+def booking(request, car_id):
+    car = get_object_or_404(Car, id=car_id)
+
+    if request.method == 'POST':
+        booking_form = BookingForm(request.POST, car=car)
+
         if booking_form.is_valid():
-            car_id = request.POST.get("car_id")
-            try:
-                car_instance = Car.objects.get(id=car_id)
-            except Car.DoesNotExist:
-                messages.info(request, "Error while booking: car not found")
-                return redirect('fleet')
-
             booking = booking_form.save(commit=False)
-            booking.car = car_instance
+            booking.car = car
             booking.save()
-
-            messages.success(request, "You have successfully booked a car")
-            Util.send_booking_receipt(booking)
-
+            messages.success(request, "Your booking was successful")
             return redirect('homepage')
         else:
-            messages.info(request, "Error while booking")
-    return redirect('fleet')
+            messages.error(request, "Error with booking, try again")
+    else:
+        booking_form = BookingForm(initial={'car': car.id}, car=car)
 
-
-def contact(request):
-    context = {"contact_form": ContactForm(), "newsletter_form": NewsletterForm()}
-    return render(request, 'store/contact.html', context)
+    return render(request, 'store/booking.html', {'booking_form': booking_form, 'car': car})
 
 
 def home(request):
-    cars = Car.objects.order_by("-id").all()
+    cars = Offer.objects.order_by("-id").all()
     settings = Setting.objects.all()
     count = min(cars.count(), 3)
     cars = random.sample(list(cars), count)
     context = {"cars": cars, "contact_form": ContactForm(), "newsletter_form": NewsletterForm(), "settings": settings}
     return render(request, 'index.html', context)
+
+
+def contact(request):
+    context = {"contact_form": ContactForm(), "newsletter_form": NewsletterForm()}
+    return render(request, 'store/contact.html', context)
 
 
 def contact_form_submit(request):
@@ -67,7 +62,7 @@ def contact_form_submit(request):
 
 def fleet(request):
     cars = Car.objects.all()
-    context = {"newsletter_form": NewsletterForm(), "cars": cars, "booking_form": BookingForm()}
+    context = {"newsletter_form": NewsletterForm(), "cars": cars}
     return render(request, 'store/fleet.html', context)
 
 

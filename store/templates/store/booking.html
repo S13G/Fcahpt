@@ -1,0 +1,69 @@
+{% extends 'index.html' %}
+{% load static %}
+{% load humanize %}
+{% block content %}
+    <div class="modal-body">
+
+        <section>
+            <div class="container">
+                <div class="text-center">
+                    <h1>Book This Car</h1>
+
+                    <br>
+
+                    <p class="lead">Booking in Progress</p>
+                    <img src="{{ car.image_url }}" alt="car-pic">
+                </div>
+            </div>
+        </section>
+
+        <form action="{% url 'booking' car.id %}" id="contact-form" method="post">
+            {% csrf_token %}
+            <input type="hidden" name="car_id" value="{{ car.id }}">
+            <div class="row">
+                <div class="col-md-6">
+                    {{ booking_form.pickup_location }}
+                </div>
+
+                <div class="col-md-6">
+                    {{ booking_form.return_location }}
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    {{ booking_form.pickup_date_and_time }}
+                </div>
+
+                <div class="col-md-6">
+                    {{ booking_form.return_date_and_time }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    {{ booking_form.full_name }}
+                </div>
+
+                <div class="col-md-6">
+                    {{ booking_form.car }}
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    {{ booking_form.email_address }}
+                </div>
+
+                <div class="col-md-6">
+                    {{ booking_form.phone_number }}
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="submit" class="section-btn btn btn-primary">Book Now</button>
+            </div>
+        </form>
+
+    </div>
+
+{% endblock content %}
