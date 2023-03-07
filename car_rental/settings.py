@@ -26,9 +26,9 @@ SECRET_KEY = config('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG')
 
-ALLOWED_HOSTS = ['fcahpt.up.railway.app', '127.0.0.1']
+ALLOWED_HOSTS = ['fcahpt.cleverapps.io', '127.0.0.1']
 
-CSRF_TRUSTED_ORIGINS = ['https://fcahpt.up.railway.app']
+CSRF_TRUSTED_ORIGINS = ['https://fcahpt.cleverapps.io']
 
 # Application definition
 
@@ -88,21 +88,10 @@ WSGI_APPLICATION = 'car_rental.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
-
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'railway',
-        'HOST': 'containers-us-west-86.railway.app',
-        'USER': 'root',
-        'PASSWORD': 'emsgmtgR9dBj5GOklIlZ',
-        'PORT': '6721',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 
@@ -144,14 +133,7 @@ STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 STATICFILES_DIRS = [os.path.join(BASE_DIR / 'static')]
 
-# STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
-
-STORAGES = {
-    "staticfiles": {
-        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
-    },
-}
-
+STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
 
 MEDIA_URL = 'media/'
 
@@ -166,9 +148,9 @@ EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 
 EMAIL_HOST = config("EMAIL_HOST")
 
-EMAIL_USE_SSL = True
+EMAIL_USE_SSL = False
 
-EMAIL_USE_TLS = False
+EMAIL_USE_TLS = True
 
 EMAIL_HOST_USER = config("EMAIL_HOST_USER")
 
@@ -176,7 +158,11 @@ DEFAULT_FROM_EMAIL = config("EMAIL_HOST_USER")
 
 EMAIL_HOST_PASSWORD = config("EMAIL_HOST_PASSWORD")
 
-EMAIL_PORT = 465
+EMAIL_PORT = 587
+
+STATIC_URL_PREFIX = config("STATIC_URL_PREFIX")
+
+STATIC_FILES_PATH = config("STATIC_FILES_PATH")
 
 # jazzmin config
 JAZZMIN_SETTINGS = {
