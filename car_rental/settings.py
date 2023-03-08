@@ -88,23 +88,23 @@ WSGI_APPLICATION = 'car_rental.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
-
 # DATABASES = {
 #     'default': {
-#         'ENGINE': 'django.db.backends.mysql',
-#         'NAME': 'bov2wtmnfngwihbsfb6w',
-#         'HOST': 'bov2wtmnfngwihbsfb6w-mysql.services.clever-cloud.com',
-#         'USER': 'ujb87v2rhhmlbxd0',
-#         'PASSWORD': '0zz7EzzcjGTDckqD2XW',
-#         'PORT': 20726,
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
 #     }
 # }
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': config('MYSQL_ADDON_DB'),
+        'HOST': config('MYSQL_ADDON_HOST'),
+        'USER': config('MYSQL_ADDON_USER'),
+        'PASSWORD': config('MYSQL_ADDON_PASSWORD'),
+        'PORT': config('MYSQL_ADDON_PORT'),
+    }
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
