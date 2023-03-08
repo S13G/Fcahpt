@@ -95,6 +95,17 @@ DATABASES = {
     }
 }
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'bov2wtmnfngwihbsfb6w',
+#         'HOST': 'bov2wtmnfngwihbsfb6w-mysql.services.clever-cloud.com',
+#         'USER': 'ujb87v2rhhmlbxd0',
+#         'PASSWORD': '0zz7EzzcjGTDckqD2XW',
+#         'PORT': 20726,
+#     }
+# }
+
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
 
@@ -135,9 +146,21 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR / 'static')]
 
 STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
 
+BASE_MEDIA_URL = (
+    f"https://res.cloudinary.com/{config('CLOUDINARY_CLOUD_NAME')}/image/upload/v1/"
+)
+
+DEFAULT_FILE_STORAGE = "cloudinary_storage.storage.MediaCloudinaryStorage"
+
+CLOUDINARY_STORAGE = {
+    "CLOUD_NAME": config("CLOUDINARY_CLOUD_NAME"),
+    "API_KEY": config("CLOUDINARY_API_KEY"),
+    "API_SECRET": config("CLOUDINARY_API_SECRET"),
+}
+
 MEDIA_URL = 'media/'
 
-MEDIA_ROOT = BASE_DIR / 'staticfiles/media'
+MEDIA_ROOT = BASE_DIR / 'static/media'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
