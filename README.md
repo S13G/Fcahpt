@@ -37,6 +37,10 @@ Follow the example in the ```.env.example``` and populate the ```.env``` file wi
 
 Input ```SECRET_KEY=<secret key copied from terminal>``` if required
 
+
+## NOTE:
+**If all above has been met, skip to the command below**
+
 Then run the python server with the command
 
 ```python3 manage.py runserver```
