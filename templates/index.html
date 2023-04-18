@@ -51,8 +51,8 @@
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav navbar-nav-first">
                 <li class="active"><a href="{% url 'homepage' %}">Home</a></li>
-                <li><a href="{% url 'fleet' %}">Fleet</a></li>
-                <li><a href="{% url 'offers' %}">Offers</a></li>
+                <li><a href="{% url 'fleet' %}">Offers</a></li>
+                <li><a href="{% url 'offers' %}">Fleet</a></li>
                 <li><a href="{% url 'about' %}">About Us</a></li>
                 <li><a href="{% url 'contact' %}">Contact Us</a></li>
             </ul>
@@ -162,41 +162,6 @@
             </div>
         </section>
     </main>
-
-    <!-- CONTACT -->
-    <section id="contact">
-        <div class="container">
-            <div class="row">
-
-                <div class="col-md-6 col-sm-12">
-                    <form id="contact-form" role="form" action="/contact-form/" method="post">
-                        {% csrf_token %}
-                        <div class="section-title">
-                            <h2>Contact us <small>we love conversations. let us talk!</small></h2>
-                        </div>
-                        {% for form in contact_form %}
-                            <div class="col-md-12 col-sm-12">
-                                {{ form }}
-                            </div>
-                        {% endfor %}
-
-                        <div class="col-md-4 col-sm-12">
-                            <input type="submit" class="form-control" name="send-message" value="Send Message">
-                        </div>
-
-                    </form>
-                </div>
-
-                <div class="col-md-6 col-sm-12">
-                    <div class="contact-image">
-                        <img src="{% static 'images/contact-1-600x400.jpg' %}" class="img-responsive"
-                             alt="Smiling Two Girls">
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
 {% endblock content %}
 
 <!-- FOOTER -->

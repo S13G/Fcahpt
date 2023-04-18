@@ -23,7 +23,7 @@ After virtual environment has been created. Activate the environment.
 ```source <name_of_environment>/bin/activate```
 
 ### Windows
-```Scripts/bin/activate```
+```<name_of_environment>/Scripts/bin/activate```
 
 Install all packages listed in the requirements.txt file using the command below:
 
@@ -43,4 +43,11 @@ Input ```SECRET_KEY=<secret key copied from terminal>``` if required
 
 Then run the python server with the command
 
+### Make migrations
+```python3 manage.py makemigrations```
+
+### Migrate to the database
+```python3 manage.py migrate```
+
+### Run the server
 ```python3 manage.py runserver```
