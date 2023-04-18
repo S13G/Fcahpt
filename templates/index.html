@@ -47,16 +47,18 @@
             <a href="#" class="navbar-brand">FCAHPT Car Fleet</a>
         </div>
 
-        <!-- MENU LINKS -->
-        <div class="collapse navbar-collapse">
-            <ul class="nav navbar-nav navbar-nav-first">
-                <li class="active"><a href="{% url 'homepage' %}">Home</a></li>
-                <li><a href="{% url 'fleet' %}">Offers</a></li>
-                <li><a href="{% url 'offers' %}">Fleet</a></li>
-                <li><a href="{% url 'about' %}">About Us</a></li>
-                <li><a href="{% url 'contact' %}">Contact Us</a></li>
-            </ul>
-        </div>
+        {% block navbar %}
+            <!-- MENU LINKS -->
+            <div class="collapse navbar-collapse">
+                <ul class="nav navbar-nav navbar-nav-first">
+                    <li class="active"><a href="{% url 'homepage' %}">Home</a></li>
+                    <li><a href="{% url 'offers' %}">Fleet</a></li>
+                    <li><a href="{% url 'fleet' %}">Offers</a></li>
+                    <li><a href="{% url 'about' %}">About Us</a></li>
+                    <li><a href="{% url 'contact' %}">Contact Us</a></li>
+                </ul>
+            </div>
+        {% endblock navbar %}
 
     </div>
 </section>
@@ -237,7 +239,7 @@
             {% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
                 iziToast.success({
                     title: 'Success:',
-                    message: '{{message}}',
+                    message: '{{ message }}',
                     position: 'topCenter',
                     zindex: 99999,
                     timeout: 2200,
@@ -245,7 +247,7 @@
             {% elif message.level == DEFAULT_MESSAGE_LEVELS.INFO %}
                 iziToast.info({
                     title: 'Info:',
-                    message: '{{message}}',
+                    message: '{{ message }}',
                     position: 'topCenter',
                     zindex: 99999,
                     timeout: 2600,
@@ -253,7 +255,7 @@
             {% elif message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
                 iziToast.error({
                     title: 'Error:',
-                    message: '{{message}}',
+                    message: '{{ message }}',
                     position: 'topCenter',
                     zindex: 99999,
                     timeout: 2300,
@@ -261,6 +263,7 @@
             {% endif %}
         {% endfor %}
     {% endif %}
+
 </script>
 
 </body>
