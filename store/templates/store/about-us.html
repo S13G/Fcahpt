@@ -1,108 +1,128 @@
-{% extends 'index.html' %}
-{% load  static %}
-{% block content %}
+{% extends 'index.html' %} {% load static %} {% block content %}
 
-    <section>
-        <div class="container">
-            <div class="text-center">
-                <h1>About Us</h1>
+<section>
+  <div class="container">
+    <div class="text-center">
+      <h1>About Us</h1>
 
-                <br>
+      <br />
 
-                <p class="lead">
-                    We are a leading car rental company dedicated to providing our customers with the highest level
-                    of service and quality vehicles at affordable prices. With years of experience in the car
-                    rental industry, we have developed a reputation for delivering exceptional customer service and
-                    building long-lasting relationships with our clients. </p>
-            </div>
+      <p class="lead">
+        We are a car rental company dedicated to providing our customers with
+        the highest level of service and quality vehicles at affordable prices.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="section-background">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-offset-1 col-md-4 col-xs-12 pull-right">
+        <img
+          src="{% static 'images/about-1-720x720.jpg' %}"
+          class="img-responsive img-circle"
+          alt=""
+        />
+      </div>
+
+      <div class="col-md-7 col-xs-12">
+        <div class="about-info">
+          <h2>Our Mission</h2>
+
+          <figure>
+            <figcaption>
+              <p>
+                Our mission is to provide our customers with a seamless and
+                hassle-free car rental experience. We aim to achieve this by
+                offering reliable and well-maintained vehicles, a wide range of
+                rental options, competitive pricing, and exceptional customer
+                service. We strive to exceed our customers' expectations every
+                time they rent with us.
+              </p>
+            </figcaption>
+          </figure>
         </div>
-    </section>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <section class="section-background">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-offset-1 col-md-4 col-xs-12 pull-right">
-                    <img src="{% static 'images/about-1-720x720.jpg' %}" class="img-responsive img-circle" alt="">
-                </div>
+<section>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4 col-xs-12">
+        <img
+          src="{% static 'images/about-2-720x720.jpg' %}"
+          class="img-responsive img-circle"
+          alt=""
+        />
+      </div>
 
-                <div class="col-md-7 col-xs-12">
-                    <div class="about-info">
-                        <h2>Our Mission</h2>
+      <div class="col-md-offset-1 col-md-7 col-xs-12">
+        <div class="about-info">
+          <h2>Our Vision</h2>
 
-                        <figure>
-                            <figcaption>
-                                <p>Our mission is to provide our customers with a seamless and hassle-free car
-                                    rental experience. We aim to achieve this by offering reliable and
-                                    well-maintained vehicles, a wide range of rental options, competitive
-                                    pricing, and exceptional customer service. We strive to exceed our
-                                    customers' expectations every time they rent with us.</p>
-                            </figcaption>
-                        </figure>
-                    </div>
-                </div>
-            </div>
+          <figure>
+            <figcaption>
+              <p>
+                Our vision is to become the most trusted and preferred car
+                rental company in the industry. We aspire to achieve this by
+                continuously improving our services, expanding our reach, and
+                building strong relationships with our customers, employees, and
+                partners.
+              </p>
+            </figcaption>
+          </figure>
         </div>
-    </section>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <section>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-4 col-xs-12">
-                    <img src="{% static 'images/about-2-720x720.jpg' %}" class="img-responsive img-circle" alt="">
-                </div>
+<section class="section-background">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 col-sm-12">
+        <div class="text-center">
+          <h2>Our Values</h2>
 
-                <div class="col-md-offset-1 col-md-7 col-xs-12">
-                    <div class="about-info">
-                        <h2>Our Vision</h2>
+          <br />
 
-                        <figure>
-                            <figcaption>
-                                <p>Our vision is to become the most trusted and preferred car rental company in
-                                    the industry. We aspire to achieve this by continuously improving our
-                                    services, expanding our reach, and building strong relationships with our
-                                    customers, employees, and partners.</p>
-                            </figcaption>
-                        </figure>
-                    </div>
-                </div>
-            </div>
+          <p class="lead">
+            At our car rental company, we are committed to providing exceptional
+            service that is guided by our core values of:
+          </p>
+          <div>
+            <ul class="text-left">
+              <li>
+                <b>Customer focus:</b> We put our customers' needs first and are
+                dedicated to delivering exceptional service that meets and
+                exceeds their expectations.
+              </li>
+              <li>
+                <b>Integrity:</b> We uphold the highest ethical standards and
+                are committed to being honest, transparent, and accountable in
+                all our dealings.
+              </li>
+              <li>
+                <b>Quality:</b> We are committed to providing high-quality
+                vehicles that are safe, reliable, and well-maintained.
+              </li>
+              <li>
+                <b>Teamwork:</b> We believe in working collaboratively with our
+                customers, employees, and partners to achieve our goals.
+              </li>
+              <li>
+                <b>Innovation:</b> We are constantly looking for new and
+                innovative ways to improve our services and enhance our
+                customers' experience.
+              </li>
+            </ul>
+          </div>
         </div>
-    </section>
-
-    <section class="section-background">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12 col-sm-12">
-                    <div class="text-center">
-                        <h2>Our Values</h2>
-
-                        <br>
-
-                        <p class="lead">At our car rental company, we are committed to providing exceptional
-                            service that is guided by our core values of:</p>
-                        <div>
-                            <ul class="text-left">
-                                <li><b>Customer focus:</b> We put our customers' needs first and are dedicated
-                                    to delivering exceptional service that meets and exceeds their
-                                    expectations.
-                                </li>
-                                <li><b>Integrity:</b> We uphold the highest ethical standards and are committed
-                                    to being honest, transparent, and accountable in all our dealings.
-                                </li>
-                                <li><b>Quality:</b> We are committed to providing high-quality vehicles that are
-                                    safe, reliable, and well-maintained.
-                                </li>
-                                <li><b>Teamwork:</b> We believe in working collaboratively with our customers,
-                                    employees, and partners to achieve our goals.
-                                </li>
-                                <li><b>Innovation:</b> We are constantly looking for new and innovative ways to
-                                    improve our services and enhance our customers' experience.
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+      </div>
+    </div>
+  </div>
+</section>
 {% endblock content %}
