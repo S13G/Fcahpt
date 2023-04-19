@@ -66,7 +66,7 @@ def contact_form_submit(request):
 def fleet(request):
     cars = Car.objects.all()
     context = {"newsletter_form": NewsletterForm(), "cars": cars}
-    return render(request, 'store/fleet.html', context)
+    return render(request, 'store/offers.html', context)
 
 
 def newsletter_form_submit(request):
@@ -83,4 +83,4 @@ def newsletter_form_submit(request):
 def offers(request):
     offers = Offer.objects.all()
     context = {"newsletter_form": NewsletterForm(), "offers": offers}
-    return render(request, 'store/offers.html', context)
+    return render(request, 'store/fleet.html', context)

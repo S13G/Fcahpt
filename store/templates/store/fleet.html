@@ -2,13 +2,14 @@
 {% load static %}
 {% load humanize %}
 {% block content %}
+
     {% block navbar %}
         <!-- MENU LINKS -->
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav navbar-nav-first">
                 <li><a href="{% url 'homepage' %}">Home</a></li>
-                <li><a href="{% url 'offers' %}">Fleet</a></li>
-                <li class="active"><a href="{% url 'fleet' %}">Offers</a></li>
+                <li class="active"><a href="{% url 'offers' %}">Fleet</a></li>
+                <li><a href="{% url 'fleet' %}">Offers</a></li>
                 <li><a href="{% url 'about' %}">About Us</a></li>
                 <li><a href="{% url 'contact' %}">Contact Us</a></li>
             </ul>
@@ -16,7 +17,7 @@
     {% endblock navbar %}
 
     <section>
-        <div class="container">
+    <div class="container">
             <div class="text-center">
                 <h1>Fleet</h1>
 
@@ -30,42 +31,27 @@
     <section class="section-background">
         <div class="container">
             <div class="row">
-                {% for car in cars %}
+                {% for offer in offers %}
                     <div class="col-md-4 col-sm-4">
                         <div class="courses-thumb courses-thumb-secondary">
                             <div class="courses-top">
                                 <div class="courses-image">
-                                    <img src="{{ car.image_url }}" class="img-responsive" alt="">
-                                </div>
-                                <div class="courses-date">
-                                    <span title="passegengers"><i class="fa fa-user"></i> {{ car.passengers }}</span>
-                                    <span title="luggages"><i class="fa fa-briefcase"></i> {{ car.luggage }}</span>
-                                    <span title="doors"><i class="fa fa-sign-out"></i> {{ car.doors }}</span>
-                                    <span title="transmission"><i class="fa fa-cog"></i> {{ car.transmission }}</span>
+                                    <img src="{{ offer.image_url }}" class="img-responsive" alt="">
                                 </div>
                             </div>
 
                             <div class="courses-detail">
-                                <h3>{{ car.name }}</h3>
-                                <p class="lead"><small>from</small> <strong><s>N</s>{{ car.price|floatformat|intcomma }}
-                                </strong> <small>per
-                                    weekend</small>
-                                </p>
-                            </div>
-
-                            <div class="courses-info">
-                                <a href="{% url 'booking' car.id %}">
-                                    <button type="button" data-toggle="modal" data-target=".bs-example-modal"
-                                            class="section-btn btn btn-primary btn-block">Book Now
-                                    </button>
-                                </a>
+                                <h3><a href="{% url 'fleet' %}">{{ offer.name }}</a></h3>
+{#                                <p class="lead"><small>from</small>#}
+{#                                    <strong><s>N</s>{{ offer.price|floatformat|intcomma }}#}
+{#                                    </strong> <small>per#}
+{#                                        weekend</small>#}
+{#                                </p>#}
                             </div>
                         </div>
                     </div>
                 {% endfor %}
-
             </div>
         </div>
     </section>
-
-{% endblock content %}
+{% endblock %}
