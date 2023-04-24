@@ -9,6 +9,6 @@ urlpatterns = [
     path('contact-form/', views.contact_form_submit, name="contact_form"),
     path('newsletter/', views.newsletter_form_submit, name="newsletter_form"),
     path('booking/<str:car_id>/', views.booking, name="booking"),
-    path('fleet/', views.fleet, name="fleet"),
-    path('offers/', views.offers, name="offers"),
+    path('offers/', views.fleet, name="fleet"),
+    path('fleet/', views.offers, name="offers"),
 ]
